@@ -6,6 +6,36 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Weather Project</h1>
+    <h1>Weather App</h1>
+    
+    {% if messages %}
+    
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+    {% endif %}
+        
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Add</button>
+    </form> <br>
+    
+    {% for city in city_data %}
+    {{ city.city }} <br>
+    <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image"> <br>
+    {{ city.temp }} <br>
+    {{ city.description }} <br>
+    <hr>
+        
+    {% endfor %}
+        
+
+
+
+    <!-- {{ city }} <br>
+    {{ temp }} <br>
+    {{ description }} <br>
+    {{ icon }} -->
 </body>
 </html>
