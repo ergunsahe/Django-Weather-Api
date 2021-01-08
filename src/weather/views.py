@@ -41,6 +41,7 @@ def index(request):
             "temp":res["main"]["temp"],
             "description":res["weather"][0]["description"],
             "icon":res["weather"][0]["icon"],
+            "id":city.id
             
         }
         city_data.append(weather_data)
@@ -50,3 +51,10 @@ def index(request):
         "form":form
     }
     return render(request, "weather/index.html", context)
+
+
+def delete_city(request, id):
+    city = City.objects.get(id=id)
+    if request.method == "POST":
+        city.delete()
+        return redirect("weather:home")
